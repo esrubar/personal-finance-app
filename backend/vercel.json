@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "methods": ["OPTIONS", "GET", "POST", "PUT", "DELETE"],
+      "dest": "/api/$1"
+    }
+  ]
+}

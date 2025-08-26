@@ -4,6 +4,7 @@ import User from '@/models/User'
 import bcrypt from "bcrypt"
 import { z } from 'zod'
 import { signJwt } from '@/utils/jwt'
+import {preflight, withCORS} from "@/utils/cors";
 
 export const runtime = 'nodejs'
 
@@ -11,6 +12,10 @@ const schema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
 })
+
+export async function OPTIONS(req: NextRequest) {
+  return preflight(req)
+}
 
 export async function POST(req: NextRequest) {
   await connectToDB()
@@ -39,10 +44,9 @@ export async function POST(req: NextRequest) {
   res.cookies.set('token', token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    sameSite: 'lax',
+    sameSite: 'none',
     path: '/',
-    maxAge: 60 * 60 * 24 * 7, // 7 días
+    maxAge: 60 * 60 * 24 * 7,
   })
-
-  return res
+  return withCORS(req, res)
 }
