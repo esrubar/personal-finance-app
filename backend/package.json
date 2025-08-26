@@ -1,0 +1,25 @@
+{
+  "name": "personal-finance-backend-next",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.2",
+    "next": "14.2.6",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/react": "19.1.11",
+    "bcrypt": "^6.0.0",
+    "typescript": "^5.5.4"
+  }
+}
